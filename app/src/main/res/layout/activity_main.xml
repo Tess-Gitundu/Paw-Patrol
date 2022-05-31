@@ -22,7 +22,7 @@
         android:text="Paw Patrol" />
 
     <Button
-        android:id="@+id/petsButton"
+        android:id="@+id/seeAllPetsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
