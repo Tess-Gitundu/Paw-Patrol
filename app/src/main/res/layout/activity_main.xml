@@ -10,5 +10,15 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="45dp"
+        android:textColor="@color/purple_200"
         android:text="Paw Patrol" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/purple_200"
+        android:text="See all pets" />
 </RelativeLayout>
