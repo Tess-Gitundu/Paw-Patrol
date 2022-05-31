@@ -2,6 +2,7 @@ package com.example.gitundu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
         mSeeAllPetsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, PetsActivity.class);
+                startActivity(intent);
                 Toast.makeText(MainActivity.this, "Jumping to all pets", Toast.LENGTH_LONG).show();
             }
         });
