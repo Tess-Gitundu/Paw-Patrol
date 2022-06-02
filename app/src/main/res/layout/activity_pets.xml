@@ -21,6 +21,14 @@
         android:textSize="30sp"
         android:text="Paw Patrol" />
 
+    <ListView
+        android:id="@+id/petsListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/finderTextView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
     <TextView
         android:id="@+id/finderTextView"
         android:layout_width="wrap_content"
