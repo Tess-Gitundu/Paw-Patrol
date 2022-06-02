@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 public class PetsActivity extends AppCompatActivity {
     private TextView mFinderTextView;
+    private String[] pets = new String[] {"Dogs", "Cats", "Ferrets", "Rabbits", "Rodents", "Hedgehog", "Tenrecs", "Fish", "Reptiles", "Amphibians"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
