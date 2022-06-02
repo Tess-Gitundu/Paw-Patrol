@@ -9,17 +9,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
-    private Button mSeeAllPetsButton; //a member variable to hold our seeAllPetsButton to access it inside all of our methods
-    private EditText mPetFinderText;
+    @BindView(R.id.seeAllPetsButton) Button mSeeAllPetsButton;
+    @BindView(R.id.petFinderText) EditText mPetFinderText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-        mPetFinderText = (EditText) findViewById(R.id.petFinderText);
-        mSeeAllPetsButton = (Button)findViewById(R.id.seeAllPetsButton);
         mSeeAllPetsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
