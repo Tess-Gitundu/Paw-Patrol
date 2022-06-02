@@ -18,8 +18,19 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="45dp"
-        android:textColor="@color/purple_200"
+        android:textSize="30sp"
         android:text="Paw Patrol" />
+
+    <EditText
+        android:id="@+id/petFinderText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_200"
+        android:layout_above="@+id/seeAllPetsButton"
+        android:layout_marginBottom="10dp"
+        android:padding="5dp"
+        android:layout_centerHorizontal="true"
+        android:hint="Enter your location"/>
 
     <Button
         android:id="@+id/seeAllPetsButton"
@@ -28,7 +39,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@color/purple_200"
-        android:text="See all pets" />
+        android:text="See pets you can adopt" />
 
 
 </RelativeLayout>
