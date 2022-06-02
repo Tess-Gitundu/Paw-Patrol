@@ -15,6 +15,8 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.seeAllPetsButton) Button mSeeAllPetsButton;
     @BindView(R.id.petFinderText) EditText mPetFinderText;
+    @BindView(R.id.signUpButton) Button mSignUpButton;
+//    @BindView(R.id.signUpEditText) EditText mSignUpEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,5 +34,15 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Jumping to all pets", Toast.LENGTH_LONG).show();
             }
         });
+
+//        mSignUpButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String name = mSignUpEditText.getText().toString();
+//                Intent intent = new Intent(MainActivity.this, SignupActivity.class);
+//                intent.putExtra("name", name);
+//                startActivity(intent);
+//            }
+//        });
     }
 }

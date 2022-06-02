@@ -11,6 +11,16 @@
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/pawpatrol" />
 
+    <EditText
+        android:id="@+id/signUpEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="500dp"
+        android:padding="10dp"
+        android:background="@color/teal_200"
+        android:layout_centerHorizontal="true"
+        android:hint="Enter your name" />
 
     <TextView
         android:id="@+id/headerTextView"
@@ -21,5 +31,13 @@
         android:layout_marginTop="45dp"
         android:textSize="30sp"
         android:text="Paw Patrol" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/signUpTextView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:text="Here are all the animals you can adopt"-->
+<!--        android:background="@color/teal_200"/>-->
 
 </RelativeLayout>
