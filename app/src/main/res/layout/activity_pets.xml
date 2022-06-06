@@ -17,8 +17,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"
-        android:textSize="30sp"
+        android:layout_marginTop="150dp"
+        android:textSize="60sp"
+        android:textColor="@color/black"
         android:text="Paw Patrol" />
 
     <ListView
