@@ -17,9 +17,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"
-        android:textSize="30sp"
-        android:text="Paw Patrol" />
+        android:layout_marginTop="150dp"
+        android:text="Paw Patrol"
+        android:textColor="@color/black"
+        android:textSize="60sp" />
 
     <EditText
         android:id="@+id/petFinderText"
@@ -47,8 +48,9 @@
         android:layout_above="@+id/seeAllPetsButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="500dp"
-        android:text="Sign Up Here" />
+        android:layout_marginBottom="400dp"
+        android:text="Sign Up Here"
+        android:textSize="15sp" />
 
 
 </RelativeLayout>
