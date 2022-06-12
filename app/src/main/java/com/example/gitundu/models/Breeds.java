@@ -1,10 +1,10 @@
 
-package com.example.gitundu;
+package com.example.gitundu.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Colors {
+public class Breeds {
 
     @SerializedName("primary")
     @Expose
@@ -12,28 +12,33 @@ public class Colors {
     @SerializedName("secondary")
     @Expose
     private Object secondary;
-    @SerializedName("tertiary")
+    @SerializedName("mixed")
     @Expose
-    private Object tertiary;
+    private Boolean mixed;
+    @SerializedName("unknown")
+    @Expose
+    private Boolean unknown;
 
     /**
      * No args constructor for use in serialization
      * 
      */
-    public Colors() {
+    public Breeds() {
     }
 
     /**
      * 
      * @param secondary
-     * @param tertiary
+     * @param mixed
      * @param primary
+     * @param unknown
      */
-    public Colors(String primary, Object secondary, Object tertiary) {
+    public Breeds(String primary, Object secondary, Boolean mixed, Boolean unknown) {
         super();
         this.primary = primary;
         this.secondary = secondary;
-        this.tertiary = tertiary;
+        this.mixed = mixed;
+        this.unknown = unknown;
     }
 
     public String getPrimary() {
@@ -52,12 +57,20 @@ public class Colors {
         this.secondary = secondary;
     }
 
-    public Object getTertiary() {
-        return tertiary;
+    public Boolean getMixed() {
+        return mixed;
     }
 
-    public void setTertiary(Object tertiary) {
-        this.tertiary = tertiary;
+    public void setMixed(Boolean mixed) {
+        this.mixed = mixed;
+    }
+
+    public Boolean getUnknown() {
+        return unknown;
+    }
+
+    public void setUnknown(Boolean unknown) {
+        this.unknown = unknown;
     }
 
 }

@@ -1,10 +1,10 @@
 
-package com.example.gitundu;
+package com.example.gitundu.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Type {
+public class Organization {
 
     @SerializedName("href")
     @Expose
@@ -14,14 +14,14 @@ public class Type {
      * No args constructor for use in serialization
      * 
      */
-    public Type() {
+    public Organization() {
     }
 
     /**
      * 
      * @param href
      */
-    public Type(String href) {
+    public Organization(String href) {
         super();
         this.href = href;
     }

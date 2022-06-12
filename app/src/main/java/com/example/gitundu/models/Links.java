@@ -1,5 +1,5 @@
 
-package com.example.gitundu;
+package com.example.gitundu.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

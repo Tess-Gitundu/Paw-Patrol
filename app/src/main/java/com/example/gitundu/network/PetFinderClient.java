@@ -1,7 +1,9 @@
-package com.example.gitundu;
+package com.example.gitundu.network;
 
 import static com.example.gitundu.Constansts.PETFINDER_API_KEY;
 import static com.example.gitundu.Constansts.PETFINDER_BASE_URL;
+
+import com.example.gitundu.network.PetFinderApi;
 
 import java.io.IOException;
 

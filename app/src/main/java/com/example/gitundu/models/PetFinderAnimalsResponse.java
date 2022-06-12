@@ -1,7 +1,10 @@
 
-package com.example.gitundu;
+package com.example.gitundu.models;
 
 import java.util.List;
+
+import com.example.gitundu.models.Animal;
+import com.example.gitundu.models.Pagination;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
