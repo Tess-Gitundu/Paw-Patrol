@@ -1,6 +1,7 @@
 package com.example.gitundu.adapters;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -28,18 +29,20 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
 
     @NonNull
     @Override
-    public PetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    public PetListAdapter.PetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pet_list_item, parent, false);
+        PetViewHolder viewHolder = new PetViewHolder(view);
+        return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PetViewHolder holder, int position) {
-
+    public void onBindViewHolder(PetListAdapter.PetViewHolder holder, int position) {
+        holder.bindPet(mPets.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mPets.size();
     }
 
     public class PetViewHolder extends RecyclerView.ViewHolder {
