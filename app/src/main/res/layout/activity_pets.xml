@@ -22,13 +22,15 @@
         android:textColor="@color/black"
         android:text="Paw Patrol" />
 
-    <ListView
-        android:id="@+id/petsListView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/finderTextView"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_marginTop="16dp"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/finderTextView"
