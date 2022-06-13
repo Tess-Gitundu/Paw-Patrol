@@ -5,6 +5,9 @@ import com.example.gitundu.models.Address;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class Contact {
 
     @SerializedName("email")
