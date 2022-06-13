@@ -1,6 +1,8 @@
 package com.example.gitundu;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +11,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gitundu.adapters.PetListAdapter;
 import com.example.gitundu.network.PetFinderClient;
 import com.example.gitundu.models.Animal;
 import com.example.gitundu.models.PetFinderAnimalsResponse;
@@ -26,8 +30,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PetsActivity extends AppCompatActivity {
-    @BindView(R.id.finderTextView) TextView mFinderTextView;
-    @BindView(R.id.petsListView) ListView mPetsListView;
+    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
+    @BindView(R.id.errorTextView) TextView mErrorTextView;
+    @BindView(R.id.progressBar) ProgressBar mProgressBar;
+
+    private PetListAdapter mAdapter;
+    public List<Animal> pets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +43,9 @@ public class PetsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pets);
         ButterKnife.bind(this);
 
-        mPetsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                String pet = ((TextView)view).getText().toString();
-                Toast.makeText(PetsActivity.this, pet, Toast.LENGTH_LONG).show();
-            }
-        });
 
         Intent intent = getIntent();
         String finder = intent.getStringExtra("finder");
-        mFinderTextView.setText("Here are all the pets you can adopt in your area: " + finder);
 
         PetFinderApi client = PetFinderClient.getClient();
         Log.e("finderLog", "check finder" + finder);
@@ -53,25 +53,46 @@ public class PetsActivity extends AppCompatActivity {
         call.enqueue(new Callback<PetFinderAnimalsResponse>() {
             @Override
             public void onResponse(Call<PetFinderAnimalsResponse> call, Response<PetFinderAnimalsResponse> response) {
-                if (response.isSuccessful()) {
-                    Log.e("success", "Response is successful");
-                    List<Animal> petsList = response.body().getAnimals();
-                    String[] pets = new String[petsList.size()];
 
-                    for (int i = 0; i < pets.length; i++) {
-                        pets[i] = petsList.get(i).getType();
-                    }
-                    ArrayAdapter adapter = new PetsArrayAdapter(PetsActivity.this, android.R.layout.simple_list_item_1, pets);
-                    mPetsListView.setAdapter(adapter);
+                hideProgressBar();
+
+                if (response.isSuccessful()) {
+                    pets = response.body().getAnimals();
+                    mAdapter = new PetListAdapter(PetsActivity.this, pets);
+                    mRecyclerView.setAdapter(mAdapter);
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(PetsActivity.this);
+                    mRecyclerView.setLayoutManager(layoutManager);
+                    mRecyclerView.setHasFixedSize(true);
+
+                    showPets();
                 } else {
-                    Log.e("onFailure", "ResponseFailure" + response.code());
+                    showUnsuccessfulMessage();
                 }
             }
 
             @Override
             public void onFailure(Call<PetFinderAnimalsResponse> call, Throwable t) {
-                Log.e("Error Message", "onFailure: ", t);
+                hideProgressBar();
+                showFailureMessage();
             }
         });
+    }
+
+    private void showFailureMessage() {
+        mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
+        mErrorTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showUnsuccessfulMessage() {
+        mErrorTextView.setText("Something went wrong. Please try again later");
+        mErrorTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showPets() {
+        mRecyclerView.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgressBar() {
+        mProgressBar.setVisibility(View.GONE);
     }
 }
