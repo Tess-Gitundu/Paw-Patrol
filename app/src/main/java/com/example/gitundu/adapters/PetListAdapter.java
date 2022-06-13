@@ -1,6 +1,7 @@
 package com.example.gitundu.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gitundu.PetDetailActivity;
 import com.example.gitundu.R;
 import com.example.gitundu.models.Animal;
 import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -46,7 +50,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
         return mPets.size();
     }
 
-    public class PetViewHolder extends RecyclerView.ViewHolder {
+    public class PetViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @BindView(R.id.petImageView) ImageView mPetImageView;
         @BindView(R.id.petNameTextView) TextView mPetNameTextView;
         @BindView(R.id.breedTextView) TextView mBreedTextView;
@@ -58,6 +62,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            itemView.setOnClickListener(this);
         }
 
         public void bindPet(Animal pet) {
@@ -65,6 +70,15 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
             mPetNameTextView.setText(pet.getName());
             mBreedTextView.setText(pet.getBreeds().getPrimary());
             mContactTextView.setText(pet.getContact().getEmail());
+        }
+
+        @Override
+        public void onClick(View v) {
+            int itemPosition = getLayoutPosition();
+            Intent intent = new Intent(mContext, PetDetailActivity.class);
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("pets", Parcels.wrap(mPets));
+            mContext.startActivity(intent);
         }
     }
 }
