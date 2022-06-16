@@ -52,10 +52,10 @@ public class PetsActivity extends AppCompatActivity {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mRecentStatus = mSharedPreferences.getString(Constansts.PREFERENCES_FINDER_KEY, null);
         Log.d("Shared Pref Status", mRecentStatus);
-        String finder = mRecentStatus;
 
 
         Intent intent = getIntent();
+        String finder = intent.getStringExtra("finder");
 
 
         PetFinderApi client = PetFinderClient.getClient();
