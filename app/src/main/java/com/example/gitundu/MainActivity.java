@@ -38,7 +38,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (view == mSeeAllPetsButton) {
             String finder = mPetFinderText.getText().toString();
-            addToSharedPreferences(finder);
+            if (!(finder).equals("")) {
+                addToSharedPreferences(finder);
+            }
             Intent intent = new Intent(MainActivity.this, PetsActivity.class);
             startActivity(intent);
         }
