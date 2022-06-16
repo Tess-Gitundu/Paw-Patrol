@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "963870127916",
+    "project_id": "paw-patrol-558c6",
+    "storage_bucket": "paw-patrol-558c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963870127916:android:ed06e0bc0452e531611e89",
+        "android_client_info": {
+          "package_name": "com.example.gitundu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963870127916-gslg7fn141d27ucqqp9p7l0fvdchdagj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWCzrXO6VfJVcHhsVLuSbwT1ez1Alic3Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963870127916-gslg7fn141d27ucqqp9p7l0fvdchdagj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

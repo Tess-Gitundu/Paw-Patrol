@@ -22,6 +22,19 @@ android {
         }
     }
 
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/notice.txt'
+    }
+
     buildTypes.each {
         it.buildConfigField 'String', 'PETFINDER_API_KEY', PetFinderApiKey
     }
@@ -52,8 +65,12 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'org.parceler:parceler-api:1.1.12'
     annotationProcessor 'org.parceler:parceler:1.1.12'
+    implementation 'com.google.firebase:firebase-database'
+
 
 
     //Robolectric dependencies
     testImplementation "org.robolectric:robolectric:4.8.1"
 }
+
+apply plugin: 'com.google.gms.google-services'
