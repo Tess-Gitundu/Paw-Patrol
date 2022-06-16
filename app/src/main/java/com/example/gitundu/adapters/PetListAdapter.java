@@ -68,7 +68,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
         public void bindPet(Animal pet) {
 //            Picasso.get().load(pet.getPhotos().size()).into(mPetImageView);
             mPetNameTextView.setText(pet.getName());
-            mBreedTextView.setText(pet.getBreeds().getPrimary());
+//            mBreedTextView.setText(pet.getBreeds().getPrimary());
             mContactTextView.setText(pet.getContact().getEmail());
         }
 

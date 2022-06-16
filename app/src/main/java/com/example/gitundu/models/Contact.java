@@ -1,7 +1,7 @@
 
 package com.example.gitundu.models;
 
-import com.example.gitundu.models.Address;
+//import com.example.gitundu.models.Address;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -16,9 +16,9 @@ public class Contact {
     @SerializedName("phone")
     @Expose
     private String phone;
-    @SerializedName("address")
-    @Expose
-    private Address address;
+//    @SerializedName("address")
+//    @Expose
+//    private Address address;
 
     /**
      * No args constructor for use in serialization
@@ -29,15 +29,15 @@ public class Contact {
 
     /**
      * 
-     * @param address
+//     * @param address
      * @param phone
      * @param email
      */
-    public Contact(String email, String phone, Address address) {
+    public Contact(String email, String phone) {
         super();
         this.email = email;
         this.phone = phone;
-        this.address = address;
+//        this.address = address;
     }
 
     public String getEmail() {
@@ -56,12 +56,12 @@ public class Contact {
         this.phone = phone;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+//    public Address getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(Address address) {
+//        this.address = address;
+//    }
 
 }

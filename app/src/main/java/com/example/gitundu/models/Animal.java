@@ -26,12 +26,12 @@ public class Animal {
     @SerializedName("species")
     @Expose
     private String species;
-    @SerializedName("breeds")
-    @Expose
-    private Breeds breeds;
-    @SerializedName("colors")
-    @Expose
-    private Colors colors;
+//    @SerializedName("breeds")
+//    @Expose
+//    private Breeds breeds;
+//    @SerializedName("colors")
+//    @Expose
+//    private Colors colors;
     @SerializedName("age")
     @Expose
     private String age;
@@ -94,8 +94,8 @@ public class Animal {
      * @param type
      * @param photos
      * @param url
-     * @param colors
-     * @param breeds
+//     * @param colors
+//     * @param breeds
      * @param tags
      * @param organizationId
      * @param coat
@@ -110,15 +110,15 @@ public class Animal {
      * @param age
      * @param status
      */
-    public Animal(Integer id, String organizationId, String url, String type, String species, Breeds breeds, Colors colors, String age, String gender, String size, String coat, String name, String description, List<Photo> photos, String status, Attributes attributes, Environment environment, List<String> tags, Contact contact, String publishedAt, Double distance, Links links) {
+    public Animal(Integer id, String organizationId, String url, String type, String species, String age, String gender, String size, String coat, String name, String description, List<Photo> photos, String status, Attributes attributes, Environment environment, List<String> tags, Contact contact, String publishedAt, Double distance, Links links) {
         super();
         this.id = id;
         this.organizationId = organizationId;
         this.url = url;
         this.type = type;
         this.species = species;
-        this.breeds = breeds;
-        this.colors = colors;
+//        this.breeds = breeds;
+//        this.colors = colors;
         this.age = age;
         this.gender = gender;
         this.size = size;
@@ -176,21 +176,21 @@ public class Animal {
         this.species = species;
     }
 
-    public Breeds getBreeds() {
-        return breeds;
-    }
-
-    public void setBreeds(Breeds breeds) {
-        this.breeds = breeds;
-    }
-
-    public Colors getColors() {
-        return colors;
-    }
-
-    public void setColors(Colors colors) {
-        this.colors = colors;
-    }
+//    public Breeds getBreeds() {
+//        return breeds;
+//    }
+//
+//    public void setBreeds(Breeds breeds) {
+//        this.breeds = breeds;
+//    }
+//
+//    public Colors getColors() {
+//        return colors;
+//    }
+//
+//    public void setColors(Colors colors) {
+//        this.colors = colors;
+//    }
 
     public String getAge() {
         return age;

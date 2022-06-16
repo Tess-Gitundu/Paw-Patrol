@@ -62,7 +62,7 @@ public class PetDetailFragment extends Fragment {
         ButterKnife.bind(this, view);
         //            Picasso.get().load(pet.getPhotos().size()).into(mImageLabel);
         mNameLabel.setText(mPet.getName());
-        mBreedsLabel.setText(mPet.getBreeds().getPrimary());
+//        mBreedsLabel.setText(mPet.getBreeds().getPrimary());
         mContactLabel.setText(mPet.getContact().getEmail());
         mPhoneLabel.setText(mPet.getContact().getEmail());
         mAddressLabel.setText(mPet.getPublishedAt());
