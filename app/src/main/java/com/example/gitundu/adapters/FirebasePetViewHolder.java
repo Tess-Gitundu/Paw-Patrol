@@ -13,6 +13,8 @@ import com.example.gitundu.Constants;
 import com.example.gitundu.PetDetailActivity;
 import com.example.gitundu.R;
 import com.example.gitundu.models.Animal;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,7 +49,9 @@ public class FirebasePetViewHolder extends RecyclerView.ViewHolder implements Vi
     @Override
     public void onClick(View view) {
         final ArrayList<Animal> pets = new ArrayList<>();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PETS);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PETS).child(uid);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {

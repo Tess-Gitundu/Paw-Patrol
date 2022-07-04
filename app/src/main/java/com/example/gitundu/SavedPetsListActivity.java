@@ -16,6 +16,8 @@ import com.example.gitundu.adapters.FirebasePetViewHolder;
 import com.example.gitundu.models.Animal;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -36,7 +38,10 @@ public class SavedPetsListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pets);
         ButterKnife.bind(this);
 
-        mPetReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PETS);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
+        mPetReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PETS).child(uid);
         setUpFirebaseAdapter();
         hideProgressBar();
         showPets();
