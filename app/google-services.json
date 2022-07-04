@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "963870127916",
-    "project_id": "paw-patrol-558c6",
-    "storage_bucket": "paw-patrol-558c6.appspot.com"
+    "project_number": "516303491681",
+    "project_id": "pawpatrol-84572",
+    "storage_bucket": "pawpatrol-84572.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:963870127916:android:ed06e0bc0452e531611e89",
+        "mobilesdk_app_id": "1:516303491681:android:c4d8761b7cf3d5ead09020",
         "android_client_info": {
           "package_name": "com.example.gitundu"
         }
       },
       "oauth_client": [
         {
-          "client_id": "963870127916-gslg7fn141d27ucqqp9p7l0fvdchdagj.apps.googleusercontent.com",
+          "client_id": "516303491681-q3vtgcbn2ka9e13ml4256c3ctca80avj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCWCzrXO6VfJVcHhsVLuSbwT1ez1Alic3Q"
+          "current_key": "AIzaSyBeLLpyunuQhUixrJ86TAGkJGAEj367bFI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "963870127916-gslg7fn141d27ucqqp9p7l0fvdchdagj.apps.googleusercontent.com",
+              "client_id": "516303491681-q3vtgcbn2ka9e13ml4256c3ctca80avj.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

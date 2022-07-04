@@ -1,7 +1,7 @@
 package com.example.gitundu.network;
 
-import static com.example.gitundu.Constansts.PETFINDER_API_KEY;
-import static com.example.gitundu.Constansts.PETFINDER_BASE_URL;
+import static com.example.gitundu.Constants.PETFINDER_API_KEY;
+import static com.example.gitundu.Constants.PETFINDER_BASE_URL;
 
 import com.example.gitundu.network.PetFinderApi;
 

@@ -9,11 +9,15 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +26,7 @@ import com.example.gitundu.network.PetFinderClient;
 import com.example.gitundu.models.Animal;
 import com.example.gitundu.models.PetFinderAnimalsResponse;
 import com.example.gitundu.network.PetFinderApi;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.List;
 
@@ -35,6 +40,7 @@ public class PetsActivity extends AppCompatActivity {
 
     private SharedPreferences mSharedPreferences;
     private String mRecentStatus;
+    private SharedPreferences.Editor mEditor;
 
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
     @BindView(R.id.errorTextView) TextView mErrorTextView;
@@ -50,17 +56,69 @@ public class PetsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mRecentStatus = mSharedPreferences.getString(Constansts.PREFERENCES_FINDER_KEY, null);
-        Log.d("Shared Pref Status", mRecentStatus);
+        mRecentStatus = mSharedPreferences.getString(Constants.PREFERENCES_FINDER_KEY, null);
+        if (mRecentStatus != null) {
+            fetchPets(mRecentStatus);
+        }
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_search, menu);
+        ButterKnife.bind(this);
 
-        Intent intent = getIntent();
-        String finder = intent.getStringExtra("finder");
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) menuItem.getActionView();
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String finder) {
+                addToSharedPreferences(finder);
+                fetchPets(finder);
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void showFailureMessage() {
+        mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
+        mErrorTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showUnsuccessfulMessage() {
+        mErrorTextView.setText("Something went wrong. Please try again later");
+        mErrorTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showPets() {
+        mRecyclerView.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgressBar() {
+        mProgressBar.setVisibility(View.GONE);
+    }
+
+    private void addToSharedPreferences(String finder) {
+        mEditor.putString(Constants.PREFERENCES_FINDER_KEY, finder).apply();
+    }
+
+    private void fetchPets(String finder) {
         PetFinderApi client = PetFinderClient.getClient();
-        Log.e("finderLog", "check finder" + finder);
-        Call<PetFinderAnimalsResponse> call = client.getPets(finder);
+        Call<PetFinderAnimalsResponse> call = client.getPets(mRecentStatus);
         call.enqueue(new Callback<PetFinderAnimalsResponse>() {
             @Override
             public void onResponse(Call<PetFinderAnimalsResponse> call, Response<PetFinderAnimalsResponse> response) {
@@ -87,23 +145,5 @@ public class PetsActivity extends AppCompatActivity {
                 showFailureMessage();
             }
         });
-    }
-
-    private void showFailureMessage() {
-        mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
-        mErrorTextView.setVisibility(View.VISIBLE);
-    }
-
-    private void showUnsuccessfulMessage() {
-        mErrorTextView.setText("Something went wrong. Please try again later");
-        mErrorTextView.setVisibility(View.VISIBLE);
-    }
-
-    private void showPets() {
-        mRecyclerView.setVisibility(View.VISIBLE);
-    }
-
-    private void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
     }
 }
