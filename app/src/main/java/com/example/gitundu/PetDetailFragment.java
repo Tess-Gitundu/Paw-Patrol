@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gitundu.models.Animal;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -78,8 +80,13 @@ public class PetDetailFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if (v == mSavePetButton) {
-            DatabaseReference petRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PETS);
-            petRef.push().setValue(mPet);
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
+            DatabaseReference petRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PETS).child(uid);
+            DatabaseReference pushRef = petRef.push();
+            String pushId = pushRef.getKey();
+            mPet.setPushId(pushId);
+            pushRef.setValue(mPet);
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
     }
