@@ -1,5 +1,6 @@
 package com.example.gitundu;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,22 +12,24 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.concurrent.Executor;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CreateAccountActivity extends AppCompatActivity implements View.OnClickListener {
-    @BindView(R.id.signUp) Button mSignUp;
+
+    @BindView(R.id.createAccount) Button mCreateAccount;
     @BindView(R.id.name) EditText mName;
     @BindView(R.id.email) EditText mEmail;
-    @BindView(R.id.password) EditText mPassword;
-    @BindView(R.id.confirmPassword) EditText mConfirmPassword;
-    @BindView(R.id.logInAccount) Button mLogInAccount;
+    @BindView(R.id.pass) EditText mPassword;
+    @BindView(R.id.confirmPass) EditText mConfirmPassword;
 
     public static final String TAG = CreateAccountActivity.class.getSimpleName();
     private FirebaseAuth mAuth;
-
-
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,21 +37,14 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_create_account);
         ButterKnife.bind(this);
 
-        mSignUp.setOnClickListener(this);
-        mLogInAccount.setOnClickListener(this);
+        createAuthStateListener();
         mAuth = FirebaseAuth.getInstance();
-
+        mCreateAccount.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if (view == mLogInAccount) {
-            Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
-        }
-        if (view == mSignUp) {
+        if (view == mCreateAccount) {
             createNewUser();
         }
     }
@@ -68,8 +64,35 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
 
-       }
+    private void createAuthStateListener() {
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                final FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        };
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
 }
-
-
