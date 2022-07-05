@@ -1,10 +1,13 @@
 package com.example.gitundu.adapters;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
+import com.example.gitundu.R;
 import com.example.gitundu.models.Animal;
 import com.example.gitundu.utils.ItemTouchHelperAdapter;
 import com.example.gitundu.utils.OnStartDragListener;
@@ -39,13 +42,14 @@ public class FirebasePetListAdapter extends FirebaseRecyclerAdapter<Animal, Fire
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull FirebasePetViewHolder holder, int position, @NonNull Animal model) {
-
+    protected void onBindViewHolder(@NonNull FirebasePetViewHolder firebasePetViewHolder, int position, @NonNull Animal pet) {
+        firebasePetViewHolder.bindPet(pet);
     }
 
     @NonNull
     @Override
     public FirebasePetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pet_list_item_drag, parent, false);
+        return new FirebasePetViewHolder(view);
     }
 }
