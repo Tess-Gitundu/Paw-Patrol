@@ -59,7 +59,7 @@ public class SavedPetsListActivity extends AppCompatActivity {
             @NonNull
             @Override
             public FirebasePetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pet_list_item, parent, false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pet_list_item_drag, parent, false);
                 return new FirebasePetViewHolder(view);
             }
         };

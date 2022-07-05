@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/petImageView"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:src="@drawable/cutecat"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/dragIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignLeft="@+id/petImageView"
+            android:layout_alignBottom="@+id/petImageView"
+            android:gravity="bottom|left"
+            android:src="@drawable/baseline_reorder_black_24dp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/petNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Pet Name"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/breedTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Breed Type"
+            android:layout_below="@+id/petNameTextView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textStyle="italic" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/contactTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contact"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>
